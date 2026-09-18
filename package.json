@@ -1,7 +1,7 @@
 {
-  "name": "ludo-game",
+  "name": "ludo-backend-service",
   "version": "1.0.0",
-  "description": "Ludo Multiplayer Game",
+  "description": "Ludo Multiplayer Backend Service",
   "main": "Backend/server.js",
   "scripts": {
     "build": "npm install --prefix Backend",
@@ -11,8 +11,7 @@
   "keywords": [
     "ludo",
     "multiplayer",
-    "game",
-    "socketio"
+    "backend"
   ],
   "author": "",
   "license": "ISC"

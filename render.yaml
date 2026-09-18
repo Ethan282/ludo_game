@@ -1,8 +1,9 @@
 services:
   - type: web
-    name: ludo_game
+    name: ludo-backend
     env: node
-    buildCommand: npm run build
+    rootDir: Backend
+    buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /health
     plan: free
