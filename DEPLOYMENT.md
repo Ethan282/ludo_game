@@ -1,12 +1,41 @@
 # 🚀 Ludo Deployment Guide
 
-This guide explains how to deploy the **Backend on Fly.io** and the **Frontend on Vercel**.
+This guide explains how to deploy the **Backend on Render or Fly.io** and the **Frontend on Vercel**.
 
 ---
 
-## 1. Deploying the Backend on Fly.io
+## 1. Deploying the Backend on Render (https://dashboard.render.com/)
 
-The backend is a Node.js Socket.io server packaged with Docker.
+Render is the simplest way to deploy your Node.js Socket.io backend with free SSL and automatic redeploys.
+
+### Option A: Using the Render Dashboard (Web UI)
+1. Go to **[dashboard.render.com](https://dashboard.render.com/)** and sign in.
+2. Click **New +** → **Web Service**.
+3. Connect your GitHub repository: `Ethan282/ludo_game`.
+4. Configure the service settings:
+   - **Name:** `ludo-backend` (or any unique name)
+   - **Language / Runtime:** `Node`
+   - **Root Directory:** `Backend`
+   - **Build Command:** `npm install`
+   - **Start Command:** `npm start`
+   - **Plan:** Free
+5. (Optional) Under **Advanced**:
+   - **Health Check Path:** `/health`
+   - Add Environment Variable: `NODE_ENV` = `production`
+6. Click **Create Web Service**.
+7. Once deployed, Render will provide your public URL:
+   `https://<your-service-name>.onrender.com`
+
+### Option B: Using Render Blueprint (`render.yaml`)
+1. Go to **[dashboard.render.com/blueprints](https://dashboard.render.com/blueprints)**.
+2. Click **New Blueprint Instance**.
+3. Connect your repository `Ethan282/ludo_game`.
+4. Render will automatically detect the [render.yaml](render.yaml) file and configure the service.
+5. Click **Apply**.
+
+---
+
+## 2. Deploying the Backend on Fly.io (Alternative)
 
 ### Step 1: Install Fly CLI (`flyctl`)
 - **Windows (PowerShell):**
@@ -24,87 +53,58 @@ fly auth login
 ```
 
 ### Step 3: Launch and Deploy the Backend
-Open a terminal in the `Backend` directory:
 ```bash
 cd Backend
 fly launch
 ```
 1. Choose an app name (e.g., `my-ludo-backend`).
-2. Select your preferred region.
-3. When prompted to tweak settings or deploy now, confirm to deploy.
-
-If you already have a `fly.toml` generated, you can deploy anytime by running:
-```bash
-fly deploy
-```
-
-### Step 4: Verify Backend Health
-Once deployed, check that the health check responds with `200 OK`:
-```bash
-curl https://<your-fly-app-name>.fly.dev/health
-# Response: {"status":"ok","uptime":...}
-```
+2. Confirm deployment with the provided `fly.toml` & `Dockerfile`.
 
 ---
 
-## 2. Connecting the Frontend to Your Fly.io Backend
+## 3. Connecting the Frontend to Your Deployed Backend
 
-Before deploying the frontend to Vercel, set your Fly.io backend URL in `Frontend/index.html` and `Frontend/ludo.html`:
+Before or after deploying the frontend, configure the backend URL in `Frontend/index.html` (and `Frontend/ludo.html`):
 
-In the `<script>` tag of `Frontend/index.html` (and `Frontend/ludo.html`), update:
 ```javascript
+// For Render:
+window.LUDO_RENDER_URL = "https://<your-service-name>.onrender.com";
+
+// OR for Fly.io:
 window.LUDO_FLY_URL = "https://<your-fly-app-name>.fly.dev";
 ```
-*(Alternatively, players can change the server URL at runtime in the browser console using `setLudoServerUrl('https://<your-fly-app-name>.fly.dev')`).*
+
+*(You can also set/change it anytime live from the browser console using `setLudoServerUrl('https://<your-service-name>.onrender.com')`).*
 
 ---
 
-## 3. Deploying the Frontend on Vercel
+## 4. Deploying the Frontend on Vercel
 
-### Option A: Using Vercel CLI (Fastest)
-1. In your project root or `Frontend` directory, run:
-   ```bash
-   npx vercel
-   ```
-2. Follow the interactive prompts:
-   - Set up and deploy? **Yes** (`Y`)
-   - Which scope? Select your personal or team account.
-   - Link to existing project? **No**
-   - Project name? e.g. `ludo-game`
-   - In which directory is your code located? `./Frontend` (or `./`)
-3. For production deployment:
-   ```bash
-   npx vercel --prod
-   ```
-
-### Option B: Using GitHub & Vercel Dashboard
-1. Push this repository to GitHub.
-2. Go to [vercel.com/new](https://vercel.com/new) and import your GitHub repository.
-3. Under **Root Directory**, click edit and select `Frontend` (or leave as root with the included `vercel.json`).
+### Option A: Using Vercel Dashboard (Recommended)
+1. Go to [vercel.com/new](https://vercel.com/new) and import `Ethan282/ludo_game`.
+2. Set **Root Directory** to `Frontend` (or keep root).
+3. Framework Preset: **Other**.
 4. Click **Deploy**.
 
+### Option B: Using Vercel CLI
+```bash
+npx vercel --prod
+```
+
 ---
 
-## 4. Local Development
-
-To run the game locally:
+## 5. Local Development
 
 1. **Start Backend:**
    ```bash
    cd Backend
    npm start
-   # Runs on http://localhost:3001
+   # Running on http://localhost:3001
    ```
 
-2. **Open Frontend:**
-   - Double-click `Frontend/index.html` or open it with Live Server / `npx serve Frontend`.
-   - The frontend automatically detects `localhost` and connects to `http://localhost:3001`.
-
----
-
-## 5. Summary of Files Added
-- `Backend/Dockerfile` - Production container image.
-- `Backend/.dockerignore` - Excludes unneeded files from Docker builds.
-- `Backend/fly.toml` - Fly.io configuration with health checks on `/health`.
-- `Frontend/vercel.json` & root `vercel.json` - Routing & security headers for Vercel.
-- `Frontend/index.html` - Standard static root entrypoint for Vercel.
+2. **Start Frontend:**
+   ```bash
+   cd Frontend
+   npm start
+   # Running on http://localhost:3000
+   ```

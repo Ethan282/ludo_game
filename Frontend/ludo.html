@@ -1431,7 +1431,9 @@
   }
 
   function getServerUrl() {
+    if (window.LUDO_RENDER_URL) return window.LUDO_RENDER_URL;
     if (window.LUDO_SERVER_URL) return window.LUDO_SERVER_URL;
+    if (window.LUDO_FLY_URL) return window.LUDO_FLY_URL;
     try {
       const saved = localStorage.getItem('ludo_server_url');
       if (saved) return saved;
@@ -1439,7 +1441,7 @@
     if (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:') {
       return 'http://localhost:3001';
     }
-    return window.LUDO_FLY_URL || 'https://ludo-backend.fly.dev';
+    return 'https://ludo-backend.onrender.com';
   }
 
   window.setLudoServerUrl = function(url) {
