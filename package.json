@@ -1,11 +1,12 @@
 {
-  "name": "ludo-backend-service",
+  "name": "ludo-multiplayer",
   "version": "1.0.0",
-  "description": "Ludo Multiplayer Backend Service",
-  "main": "Backend/server.js",
+  "description": "Ludo Multiplayer Game",
+  "main": "server.js",
   "scripts": {
     "postinstall": "npm install --prefix Backend",
-    "build": "npm install && npm install --prefix Backend",
+    "build": "echo 'Build complete'",
+    "vercel-build": "echo 'Vercel build complete'",
     "start": "node Backend/server.js",
     "test": "npm test --prefix Backend"
   },

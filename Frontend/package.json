@@ -4,9 +4,10 @@
   "description": "Ludo Game Web Frontend",
   "main": "index.html",
   "scripts": {
+    "build": "echo 'Static build complete'",
+    "vercel-build": "echo 'Vercel static build complete'",
     "dev": "serve . -p 3000",
-    "start": "serve . -p 3000",
-    "build": "echo \"Static assets ready for deployment\""
+    "start": "serve . -p 3000"
   },
   "keywords": [
     "ludo",
