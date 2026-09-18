@@ -3,6 +3,13 @@ node_modules/
 Backend/node_modules/
 Frontend/node_modules/
 
+# Build Outputs
+dist/
+public/
+Frontend/dist/
+Frontend/public/
+Frontend/Frontend/
+
 # Logs
 *.log
 npm-debug.log*
