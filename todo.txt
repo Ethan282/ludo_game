@@ -1,0 +1,16 @@
+[LUDO Project Tasks]
+
+[Done] Backend: Add Jest tests with Socket.io integration (server.test.js)
+[Done] Backend: Implement multiplayer room management (create/join/turn/moves)
+[Done] Frontend: Add socket.io-client CDN and connection logic
+[Done] Frontend: Add multiplayer UI (room create/join modal)
+[Done] Frontend: Integrate server-driven dice/turn/move flow
+
+[Pending] Test: Verify multiplayer with 2+ browser tabs
+[Pending] Test: Verify single-player mode still works correctly
+[Done] Handle player disconnect/reconnect in multiplayer
+[Done] Add lobby waiting screen with player list
+[Pending] Improve CPU decision-making in multiplayer mode
+[Pending] Add sound effects for multiplayer events (join, leave, turn change)
+[Pending] Mobile responsiveness check for multiplayer UI
+[Pending] Add emoji/avatar customization for players
