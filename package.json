@@ -4,9 +4,15 @@
   "description": "Ludo Multiplayer Backend Service",
   "main": "Backend/server.js",
   "scripts": {
-    "build": "npm install --prefix Backend",
+    "postinstall": "npm install --prefix Backend",
+    "build": "npm install && npm install --prefix Backend",
     "start": "node Backend/server.js",
     "test": "npm test --prefix Backend"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3"
   },
   "keywords": [
     "ludo",
