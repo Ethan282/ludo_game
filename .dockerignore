@@ -1,0 +1,8 @@
+node_modules
+Backend/node_modules
+Frontend/node_modules
+npm-debug.log
+.git
+.gitignore
+Backend/server.test.js
+.env
