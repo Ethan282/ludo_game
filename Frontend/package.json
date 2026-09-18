@@ -1,0 +1,23 @@
+{
+  "name": "ludo-frontend",
+  "version": "1.0.0",
+  "description": "Ludo Game Web Frontend",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve . -p 3000",
+    "start": "serve . -p 3000",
+    "build": "echo \"Static assets ready for deployment\""
+  },
+  "keywords": [
+    "ludo",
+    "game",
+    "multiplayer",
+    "html5",
+    "canvas"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
