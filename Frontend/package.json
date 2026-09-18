@@ -4,6 +4,8 @@
   "description": "Ludo Game Web Frontend",
   "main": "index.html",
   "scripts": {
+    "build": "node build.js",
+    "vercel-build": "node build.js",
     "dev": "serve . -p 3000",
     "start": "serve . -p 3000"
   },
