@@ -5,9 +5,7 @@
   "main": "server.js",
   "scripts": {
     "postinstall": "npm install --prefix Backend",
-    "build": "echo 'Build complete'",
-    "vercel-build": "echo 'Vercel build complete'",
-    "start": "node Backend/server.js",
+    "start": "node server.js",
     "test": "npm test --prefix Backend"
   },
   "dependencies": {
